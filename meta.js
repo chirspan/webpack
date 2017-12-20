@@ -23,6 +23,12 @@ module.exports = {
       required: true,
       message: 'Project name',
     },
+	cnName:{
+		type: 'String',
+		required: false,
+		message: '项目中文名称',
+		default : '平台'
+	},
     description: {
       type: 'string',
       required: false,
@@ -33,6 +39,14 @@ module.exports = {
       type: 'string',
       message: 'Author',
     },
+	company: {
+	  type: 'String',
+	  message: 'Company'
+	},
+	companyStartYear: {
+	  type: 'String',
+	  message: 'year of company start'
+	},
     build: {
       type: 'list',
       message: 'Vue build',
@@ -54,6 +68,22 @@ module.exports = {
       type: 'confirm',
       message: 'Install vue-router?',
     },
+	vuex: {
+		type: 'confirm',
+		message: 'Install vuex?'
+	},
+	iview: {
+		type: 'confirm',
+		message: 'Install iview?'
+	},
+	echarts: {
+		type: 'confirm',
+		message: 'Install echarts?'
+	},
+	bus: {
+		type: 'confirm',
+		message: 'Install vue bus?'
+	},
     lint: {
       type: 'confirm',
       message: 'Use ESLint to lint your code?',
@@ -146,6 +176,8 @@ module.exports = {
     'test/unit/setup.js': "unit && runner === 'jest'",
     'test/e2e/**/*': 'e2e',
     'src/router/**/*': 'router',
+	"src/vuex/**/*": 'vuex',  //加入自己的目录
+	"src/lib/bus.js": 'bus'
   },
   complete: function(data, { chalk }) {
     const green = chalk.green
