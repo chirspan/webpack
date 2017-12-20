@@ -18,6 +18,7 @@ import 'iview/dist/styles/iview.css';    // 使用 CSS
 Vue.use(iView);
 {{/iview}}
 
+import axios from './http'
 Vue.prototype.axios = axios;
 Vue.config.productionTip = false
 
