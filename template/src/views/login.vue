@@ -8,7 +8,7 @@
         <img src="./../assets/img/logo.png"/>
       </div>
       <div id="login_title">
-        <div>{{appName}}</div>
+        <div>\{{appName}}</div>
       </div>
       <div id="login_form">
         <div class="title">登录</div>
