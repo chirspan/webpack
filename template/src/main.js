@@ -8,6 +8,17 @@ import App from './App'
 import router from './router'
 {{/router}}
 
+{{#vuex}}
+import store from './vuex'
+{{/vuex}}
+
+{{#iview}}
+import iView from 'iview';
+import 'iview/dist/styles/iview.css';    // 使用 CSS
+Vue.use(iView);
+{{/iview}}
+
+Vue.prototype.axios = axios;
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
@@ -16,6 +27,9 @@ new Vue({
   {{#router}}
   router,
   {{/router}}
+  {{#vuex}}
+  store,
+  {{/vuex}}
   {{#if_eq build "runtime"}}
   render: h => h(App)
   {{/if_eq}}
