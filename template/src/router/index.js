@@ -41,7 +41,8 @@ const otherRoutes = {
 };
 
 const appRoutes = {
-	
+  path: '',
+  name: '',
 }
 
 // 页面刷新时，重新赋值token

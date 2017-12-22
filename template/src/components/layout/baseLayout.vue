@@ -45,6 +45,17 @@
   .layout-container{
   }
 
+  .layout-footer{
+      text-align: center;
+      bottom: 0;
+      margin-bottom: 0;
+      border-width: 1px 0 0;
+      border-radius: 0;
+      position: fixed;
+      right: 0;
+      left: 0;
+      z-index: 1030;
+  }
   /**
   original
   */
