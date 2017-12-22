@@ -44,7 +44,7 @@
 
 <script>
   import appConf from '@/libs/app-conf.js'
-  import LockScreen from "../lockScreen/lockscreen.vue";
+  import LockScreen from "@/views/lockScreen/lockscreen.vue";
   import BaseHead from "../layout/baseHead.vue";
 
   export default {
