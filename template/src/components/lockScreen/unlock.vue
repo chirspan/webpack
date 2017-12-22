@@ -3,7 +3,7 @@
     <div class="unlock-body-con" v-if="showUnlock" @keydown.enter="handleUnlock">
       <div @click="handleClickAvator" class="unlock-avator-con" :style="{marginLeft: avatorLeft}">
         <div class="avator-img">
-          <span class="avator-text">{{userInfo.username}}</span>
+          <span class="avator-text">\{{userInfo.username}}</span>
         </div>
         <div  class="unlock-avator-cover">
           <span><Icon type="unlocked" :size="30"></Icon></span>

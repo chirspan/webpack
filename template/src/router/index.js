@@ -6,46 +6,62 @@ import iView from 'iview';
 
 Vue.use(Router)
 
-const routes = [
-  {
-    path: '*',
-    redirect: '/login'
-  },
-  {
-    path: '/locking',
-    name: 'locking',
-    component: resolve => require(['@/views/lockScreen/lockingPage.vue'], resolve),
-    meta: {
-      title: '锁屏'
-    },
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: resolve => require(['@/views/login.vue'], resolve),
-    meta: {title: '登录'}
-  },
-  {
-    path: '/home',
-    name: 'home',
-    component: resolve => require(['@/views/home.vue'], resolve),
-    meta: {
-      title: '主页'
-    },
-  },
+// 不作为Main组件的子页面展示的页面单独写，如下
+const loginRouter = {
+  path: '/login',
+  name: 'login',
+  component: resolve => require(['@/views/login.vue'], resolve),
+  meta: {title: '登录'}
+};
 
-]
+const lockRouter = {
+  path: '/locking',
+  name: 'locking',
+  component: resolve => require(['@/views/lockScreen/lockingPage.vue'], resolve),
+  meta: {
+    title: '锁屏'
+  },
+};
+
+const otherRoutes = {
+  path: '/',
+  name: 'home',
+  redirect: '/home',
+  component: resolve => require(['@/views/main.vue'], resolve),
+  children: [
+    {
+      path: 'home',
+      name: 'home_index',
+      component: resolve => require(['@/views/home/home.vue'], resolve),
+      meta: {
+        title: '主页'
+      },
+    }
+  ]
+};
+
+const appRoutes = {
+	
+}
 
 // 页面刷新时，重新赋值token
 if (window.localStorage.getItem('token')) {
   store.dispatch('refresh_user')
 }
 
+const routers = [
+  loginRouter,
+  lockRouter,
+  otherRoutes,
+  appRoutes
+]
+
 const router = new Router({
-  mode: 'history',
-  routes
+  /*  mode: 'history',*/
+  routes: routers
 });
 
+export default router;
 
 router.beforeEach((to, from, next) => {
   iView.LoadingBar.start();
@@ -59,12 +75,11 @@ router.beforeEach((to, from, next) => {
     next(false);
   } else if (to.matched.some(r => r.meta.requireAuth)) {
     if (store.state.token) {
-
       next();
     }
     else {
       next({
-        path: '/',
+        path: '/login',
         query: {redirect: to.fullPath}
       })
     }
@@ -83,4 +98,3 @@ router.afterEach(trans => {
   window.scrollTo(0, 0);
 })
 
-export default router;

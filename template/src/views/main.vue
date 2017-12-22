@@ -1,24 +1,31 @@
 <template>
-  <base-layout class="home" original>
+  <base-layout primary>
+    <simple-head showLogo slot="header"></simple-head>
     <div class="main-content">
-     
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
     </div>
+    <page-footer slot="footer"></page-footer>
   </base-layout>
 </template>
 
 <script>
   import commLib from '../libs/commUtils'
   import BaseLayout from "../components/layout/baseLayout.vue";
+  import SimpleHead from "../components/head/simpleHead.vue";
+  import PageFooter from "../components/footer/pageFooter.vue";
 
   export default {
     components: {
+      PageFooter,
       BaseLayout,
+      SimpleHead,
     },
-    name: 'home',
+    name: 'main-app',
     data() {
       return {
-        win: null,
-        time: null
+        time: null,
       }
     },
     created() {
@@ -31,13 +38,10 @@
 
 <style scoped lang="scss">
   .main-content {
-    padding: 200px 30px 0px 30px;
+    display: flex;
+    padding: 0px 20px 0px 0px;
     margin: 0 auto;
+    margin-bottom: 35px;
   }
 </style>
 
-<style>
-  .icon-lg {
-    font-size: 100px;
-  }
-</style>
