@@ -1,12 +1,17 @@
 <template>
-  <base-layout primary>
+  <base-layout class="home">
     <simple-head showLogo slot="header"></simple-head>
     <div class="main-content">
+      <!--<div class="l-menu">
+        <main-menu></main-menu>
+      </div>-->
+      <div class="r-content">
         <keep-alive>
           <router-view></router-view>
         </keep-alive>
+      </div>
     </div>
-    <page-footer slot="footer"></page-footer>
+    <footer-bar slot="footer"></footer-bar>
   </base-layout>
 </template>
 
@@ -14,11 +19,11 @@
   import commLib from '../libs/commUtils'
   import BaseLayout from "../components/layout/baseLayout.vue";
   import SimpleHead from "../components/head/simpleHead.vue";
-  import PageFooter from "../components/footer/pageFooter.vue";
+  import FooterBar from "./footer/footerBar.vue";
 
   export default {
     components: {
-      PageFooter,
+      FooterBar,
       BaseLayout,
       SimpleHead,
     },
@@ -39,9 +44,39 @@
 <style scoped lang="scss">
   .main-content {
     display: flex;
-    padding: 0px 20px 0px 0px;
-    margin: 0 auto;
-    margin-bottom: 35px;
+    padding: 0;
+    margin-bottom: 30px;
+  }
+
+  .l-menu {
+    /*margin-right: 10px;*/
+    background-color: #fff;
+  }
+
+  .r-content {
+    width: 100%;
+    padding: 10px;
   }
 </style>
 
+
+<style>
+  .icon-lg {
+    font-size: 100px;
+  }
+
+  .margin-top-10 {
+    margin-top: 10px;
+  }
+
+  .inline {
+    display: inline-block;
+  }
+  .model-dialog-right{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    max-width: 460px;
+    padding: 24px;
+  }
+</style>

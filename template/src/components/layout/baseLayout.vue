@@ -37,9 +37,8 @@
 
   .layout-header {
     height: 50px;
-    background: #fff;
-    color: #2d8cf0;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+    color: #000;
+
   }
 
   .layout-container{
@@ -63,6 +62,7 @@
     .layout-header {
       background: #f8f8f9;
       box-shadow:none;
+
     }
   }
 
@@ -73,6 +73,7 @@
     .layout-header {
       background: #2d8cf0;
       color: #fff;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
     }
   }
 </style>

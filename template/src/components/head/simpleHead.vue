@@ -1,12 +1,13 @@
 <template>
   <base-head>
     <div class="logo-container" slot="logo" v-if="showLogo">
-      <img src="../../assets/img/logo-white.png" class="logo-img" height="30">
-      <div class="logo-title" >
-        \{{appName}}
+      <img v-if="primary" src="../../assets/img/logo-white.png" class="logo-img" height="30">
+      <img v-else src="../../assets/img/logo-normal.png" class="logo-img" height="30">
+      <div class="logo-title">
+        {{appName}}
       </div>
     </div>
-    <div slot="operate-container" class="head-operate-container r">
+    <div slot="operate-container" class="head-operate-container r" v-if="primary">
       <div class="operate-right" v-if="search">
         <!--search-->
         <div class="search l">
@@ -26,7 +27,7 @@
       <!--user info and menu-->
       <div class="operate-right user-dropdown-info" v-if="userInfo">
         <Dropdown class="user-innercon" trigger="click" placement="bottom-end">
-          <span>\{{ userInfo.username}}</span>
+          <span>{{ userInfo.username}}</span>
           <Icon type="arrow-down-b"></Icon>
           <DropdownMenu slot="list">
             <DropdownItem>个人中心</DropdownItem>
@@ -56,6 +57,7 @@
     props: {
       value: String,
       showLogo: Boolean,
+      primary: Boolean,
       search: Boolean,
       lock: {type: Boolean, default: true},
       appTitle: String
@@ -97,13 +99,16 @@
 
 
 <style scoped lang="scss">
-  .logo-container{
+  .logo-container {
     display: flex;
+    align-items: flex-end;
   }
-  .logo-img{
-    margin-right: 30px;
-    margin-left: 15px;
+
+  .logo-img {
+    margin-right: 20px;
+    /*margin-left: 15px;*/
   }
+
   .logo-title {
     font-size: 20px;
     font-weight: bold;

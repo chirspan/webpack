@@ -11,6 +11,7 @@ export default new Vuex.Store({
     user: {},
     token: null,
     isFullScreen: false,
+    openMenu: []
   },
   mutations: {
     LOGIN: (state, data) => {
@@ -29,6 +30,23 @@ export default new Vuex.Store({
       state.user = JSON.parse(Base64.decode(localStorage.user))
       state.token = localStorage.token;
     },
+    OPEN_MENU: (state, data) => {
+      if (state.openMenu.indexOf(data) < 0) {
+        data.actived = true;
+        state.openMenu.push(data)
+      }
+      state.openMenu.forEach(m => {
+        if (m.name == data.name) {
+          m.actived = true;
+        } else {
+          m.actived = false;
+        }
+      })
+
+    },
+    CLOSE_MENU: (state,index) => {
+      state.openMenu.splice(index,1)
+    }
   },
   actions: {
     login({commit}, data) {
@@ -39,6 +57,12 @@ export default new Vuex.Store({
     },
     refresh_user({commit}) {
       commit('REFRESH_USER')
+    },
+    addOpenMenu({commit}, data) {
+      commit('OPEN_MENU', data)
+    },
+    removeMenuTag({commit}, index) {
+      commit('CLOSE_MENU', index)
     }
   }
 })
